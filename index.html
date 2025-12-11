@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragan Alexandru - Software Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: #f5f7fa;
+            padding: 20px;
+            line-height: 1.8;
+            color: #2d3748;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 60px 50px;
+            position: relative;
+        }
+
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 2px solid transparent;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #4f46e5;
+            border-color: white;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .header .title {
+            font-size: 1.4em;
+            opacity: 0.95;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1em;
+            background: rgba(255,255,255,0.15);
+            padding: 10px 18px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            color: #1e293b;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 2px;
+        }
+
+        .about {
+            background: linear-gradient(135deg, #eef2ff 0%, #f3e8ff 100%);
+            padding: 30px;
+            border-radius: 12px;
+            font-size: 1.05em;
+            line-height: 1.9;
+            border: 1px solid #e0e7ff;
+        }
+
+        .job, .education-item, .project {
+            margin-bottom: 30px;
+            padding: 30px;
+            background: #fafbfc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .job:hover, .project:hover {
+            border-color: #4f46e5;
+            box-shadow: 0 8px 16px rgba(79, 70, 229, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .job-header, .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 18px;
+            gap: 20px;
+        }
+
+        .job-title, .project-title {
+            font-size: 1.4em;
+            color: #1e293b;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .company {
+            color: #4f46e5;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-top: 6px;
+        }
+
+        .date {
+            color: #64748b;
+            font-size: 0.95em;
+            white-space: nowrap;
+            background: #f1f5f9;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .job-description, .project-description {
+            color: #475569;
+            font-size: 1.02em;
+            line-height: 1.8;
+        }
+
+        .key-points {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 3px solid #4f46e5;
+        }
+
+        .key-points p {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .key-points p::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #4f46e5;
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #fafbfc 0%, #f8fafc 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .skill-category h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: white;
+            color: #4f46e5;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            border: 2px solid #e0e7ff;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: #4f46e5;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #92400e;
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(79, 70, 229, 0.4);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            .print-btn, .lang-switch {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 25px;
+            }
+            .header h1 {
+                font-size: 2.2em;
+            }
+            .content {
+                padding: 30px 25px;
+            }
+            .job-header, .project-header {
+                flex-direction: column;
+            }
+            .date {
+                align-self: flex-start;
+            }
+            .lang-switch {
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        .education-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLanguage('ro')">🇷🇴 RO</button>
+                <button class="lang-btn" onclick="setLanguage('en')">🇬🇧 EN</button>
+            </div>
+            <h1>Dragan Alexandru</h1>
+            <div class="title" data-ro="Junior Software Developer | Java Spring Boot & Vue.js" data-en="Junior Software Developer | Java Spring Boot & Vue.js">Junior Software Developer | Java Spring Boot & Vue.js</div>
+            <div class="contact-info">
+                <div class="contact-item">📧 alexdragan02@gmail.com</div>
+                <div class="contact-item">📱 (+40) 0736038960</div>
+                <div class="contact-item">github.com/alexdragan02</div>
+                <div class="contact-item">📍 București, România</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="about">
+                <p data-ro="Absolvent al Facultății de Informatică Economică (ASE 2021-2024) și student master la E-Business. Developer backend cu experiență în Java Spring Boot și Vue.js/Angular, specializat în dezvoltare backend și soluții de securitate (mTLS, criptografie). Pasionat de tehnologii moderne și automatizare, caut oportunități de creștere în echipe dinamice." 
+                   data-en="Graduate of the Faculty of Economic Informatics (ASE 2021-2024) and master's student in E-Business. Backend developer with experience in Java Spring Boot and Vue.js/Angular, specialized in backend development and security solutions (mTLS, cryptography). Passionate about modern technologies and automation, seeking growth opportunities in dynamic teams.">
+                   Absolvent al Facultății de Informatică Economică (ASE 2021-2024) și student master la E-Business. Developer full-stack cu experiență în Java Spring Boot și Vue.js/Angular, specializat în dezvoltare backend și soluții de securitate (mTLS, criptografie). Pasionat de tehnologii moderne și automatizare, caut oportunități de creștere în echipe dinamice.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title" data-ro="💼 Experiență Profesională" data-en="💼 Professional Experience">💼 Experiență Profesională</h2>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Junior Software Developer</div>
+                            <div class="company">ICI București</div>
+                        </div>
+                        <div class="date" data-ro="Feb 2025 - Prezent" data-en="Feb 2025 - Present">Feb 2025 - Prezent</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Java Spring Boot</span>
+                        <span class="tech-badge">Vue 3</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">mTLS</span>
+                        <span class="tech-badge">OpenSSL</span>
+                    </div>
+                    <div class="job-description">
+                        <p data-ro="Dezvoltare full-stack a unei platforme de testare pentru case de marcat fiscale, gestionând întregul ciclu de dezvoltare de la design la producție." 
+                           data-en="Full-stack development of a testing platform for fiscal cash registers, managing the entire development cycle from design to production.">
+                           Dezvoltare full-stack a unei platforme de testare pentru case de marcat fiscale, gestionând întregul ciclu de dezvoltare de la design la producție.
+                        </p>
+                        <div class="key-points">
+                            <p data-ro="Implementare sistem de autentificare mTLS pentru comunicare securizată între dispozitive și server" 
+                               data-en="Implementation of mTLS authentication system for secure communication between devices and server">
+                               Implementare sistem de autentificare mTLS pentru comunicare securizată între dispozitive și server
+                            </p>
+                            <p data-ro="Gestionare certificate și chei criptografice (OpenSSL, Keytool, BouncyCastle)" 
+                               data-en="Management of certificates and cryptographic keys (OpenSSL, Keytool, BouncyCastle)">
+                               Gestionare certificate și chei criptografice (OpenSSL, Keytool, BouncyCastle)
+                            </p>
+                            <p data-ro="Dezvoltare sistem de verificare certificate cu validare pe identificator unic" 
+                               data-en="Development of certificate verification system with unique identifier validation">
+                               Dezvoltare sistem de verificare certificate cu validare pe identificator unic
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">IT Support Specialist</div>
+                            <div class="company">JTI România</div>
+                        </div>
+                        <div class="date" data-ro="Iul 2022 - Ian 2023" data-en="Jul 2022 - Jan 2023">Iul 2022 - Ian 2023</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">PowerShell</span>
+                        <span class="tech-badge">SQL</span>
+                        <span class="tech-badge">Ticketing System</span>
+                    </div>
+                    <div class="job-description">
+                        <p data-ro="Support tehnic de nivel 1 pentru aplicații enterprise, rezolvare incidente și colaborare cu echipa de nivel 2." 
+                           data-en="Level 1 technical support for enterprise applications, incident resolution and collaboration with level 2 team.">
+                           Support tehnic de nivel 1 pentru aplicații enterprise, rezolvare incidente și colaborare cu echipa de nivel 2.
+                        </p>
+                        <div class="key-points">
+                            <p data-ro="Monitorizare servicii și rulare scripturi PowerShell pentru rezolvarea problemelor" 
+                               data-en="Service monitoring and PowerShell script execution for problem resolution">
+                               Monitorizare servicii și rulare scripturi PowerShell pentru rezolvarea problemelor
+                            </p>
+                            <p data-ro="Interogări baze de date și analiza log-urilor aplicațiilor" 
+                               data-en="Database queries and application log analysis">
+                               Interogări baze de date și analiza log-urilor aplicațiilor
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title" data-ro="🚀 Proiecte Principale" data-en="🚀 Main Projects">🚀 Proiecte Principale</h2>
+                
+                <div class="project">
+                    <div class="project-header">
+                        <div class="project-title" data-ro="Platformă Gestionare Case de Marcat Fiscale" data-en="Fiscal Cash Register Management Platform">Platformă Gestionare Case de Marcat Fiscale</div>
+                        <div class="date" data-ro="Profesional" data-en="Professional">Profesional</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Spring Boot</span>
+                        <span class="tech-badge">Vue 3</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">mTLS</span>
+                        <span class="tech-badge">BouncyCastle</span>
+                    </div>
+                    <div class="project-description">
+                        <p data-ro="Aplicație pentru testarea și verificarea securizată a datelor din dispozitive fiscale." 
+                           data-en="Application for testing and secure verification of data from fiscal devices.">
+                           Aplicație pentru testarea și verificarea securizată a datelor din dispozitive fiscale.
+                        </p>
+                        <div class="key-points">
+                            <p data-ro="Autentificare mTLS: extragere certificate din dispozitive și configurare automată prin profile XML semnate" 
+                               data-en="mTLS authentication: certificate extraction from devices and automatic configuration via signed XML profiles">
+                               Autentificare mTLS: extragere certificate din dispozitive și configurare automată prin profile XML semnate
+                            </p>
+                            <p data-ro="Sistem de validare: verificare că fiecare certificat corespunde unui singur dispozitiv (previne reutilizarea)" 
+                               data-en="Validation system: verification that each certificate corresponds to a single device (prevents reuse)">
+                               Sistem de validare: verificare că fiecare certificat corespunde unui singur dispozitiv (previne reutilizarea)
+                            </p>
+                            <p data-ro="Panel admin pentru gestionarea testerilor și asocierea dispozitivelor cu ID-uri unice" 
+                               data-en="Admin panel for managing testers and associating devices with unique IDs">
+                               Panel admin pentru gestionarea testerilor și asocierea dispozitivelor cu ID-uri unice
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <div class="project-title" data-ro="Sistem Ticketing Inteligent cu AI" data-en="Intelligent AI Ticketing System">Sistem Ticketing Inteligent cu AI</div>
+                        <div class="date">
+                            <span data-ro="Licență - Nota 10" data-en="Bachelor Thesis - Grade 10">Licență - Nota 10</span>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Spring Boot</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">OpenAI API</span>
+                    </div>
+                    <div class="project-description">
+                        <p data-ro="Platformă de ticketing cu categorizare automată AI și asignare inteligentă către analisti." 
+                           data-en="Ticketing platform with automatic AI categorization and intelligent assignment to analysts.">
+                           Platformă de ticketing cu categorizare automată AI și asignare inteligentă către analisti.
+                        </p>
+                        <div class="key-points">
+                            <p data-ro="AI categorization: OpenAI clasifică automat ticketele (Hardware/Software) și prioritatea lor" 
+                               data-en="AI categorization: OpenAI automatically classifies tickets (Hardware/Software) and their priority">
+                               AI categorization: OpenAI clasifică automat ticketele (Hardware/Software) și prioritatea lor
+                            </p>
+                            <p data-ro="Asignare inteligentă: algoritm care distribuie ticketele bazat pe experiență și disponibilitate" 
+                               data-en="Smart assignment: algorithm that distributes tickets based on experience and availability">
+                               Asignare inteligentă: algoritm care distribuie ticketele bazat pe experiență și disponibilitate
+                            </p>
+                            <p data-ro="Chat real-time între analiști și clienți pentru rezolvare colaborativă" 
+                               data-en="Real-time chat between analysts and clients for collaborative resolution">
+                               Chat real-time între analiști și clienți pentru rezolvare colaborativă
+                            </p>
+                            <p data-ro="Sistem de escaladare: analiștii pot solicita ajutor de la colegi" 
+                               data-en="Escalation system: analysts can request help from colleagues">
+                               Sistem de escaladare: analiștii pot solicita ajutor de la colegi
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <div class="project-title" data-ro="Platformă E-Learning" data-en="E-Learning Platform">Platformă E-Learning</div>
+                        <div class="date" data-ro="Personal" data-en="Personal">Personal</div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Spring Boot</span>
+                        <span class="tech-badge">Angular</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">RabbitMQ</span>
+                    </div>
+                    <div class="project-description">
+                        <p data-ro="Platformă de cursuri online cu teste automate și sistem de autentificare fără parolă." 
+                           data-en="Online course platform with automated tests and passwordless authentication system.">
+                           Platformă de cursuri online cu teste automate și sistem de autentificare fără parolă.
+                        </p>
+                        <div class="key-points">
+                            <p data-ro="Login fără parolă: studenții primesc cod pe email după verificare externă (JWT)" 
+                               data-en="Passwordless login: students receive email code after external verification (JWT)">
+                               Login fără parolă: studenții primesc cod pe email după verificare externă (JWT)
+                            </p>
+                            <p data-ro="Profesorii creează cursuri, materiale și teste cu evaluare automată" 
+                               data-en="Teachers create courses, materials and tests with automatic evaluation">
+                               Profesorii creează cursuri, materiale și teste cu evaluare automată
+                            </p>
+                            <p data-ro="Colaborare: notițe partajate între studenți cu sistem de permisiuni" 
+                               data-en="Collaboration: shared notes between students with permission system">
+                               Colaborare: notițe partajate între studenți cu sistem de permisiuni
+                            </p>
+                            <p data-ro="RabbitMQ pentru notificări asincrone și procesare în background" 
+                               data-en="RabbitMQ for asynchronous notifications and background processing">
+                               RabbitMQ pentru notificări asincrone și procesare în background
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title" data-ro="🎓 Educație" data-en="🎓 Education">🎓 Educație</h2>
+                
+                <div class="education-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Master E-Business</div>
+                            <div class="company" data-ro="Academia de Studii Economice București" data-en="Bucharest University of Economic Studies">Academia de Studii Economice București</div>
+                        </div>
+                        <div class="date" data-ro="2024 - 2026 (în curs)" data-en="2024 - 2026 (ongoing)">2024 - 2026 (în curs)</div>
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title" data-ro="Licență Informatică Economică" data-en="Bachelor's in Economic Informatics">Licență Informatică Economică</div>
+                            <div class="company" data-ro="Academia de Studii Economice București" data-en="Bucharest University of Economic Studies">Academia de Studii Economice București</div>
+                            <div class="education-highlight" data-ro="🏆 Notă finală: 10/10" data-en="🏆 Final Grade: 10/10">🏆 Notă finală: 10/10</div>
+                        </div>
+                        <div class="date">2021 - 2024</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title" data-ro="💻 Competențe Tehnice" data-en="💻 Technical Skills">💻 Competențe Tehnice</h2>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Spring Boot</span>
+                            <span class="tag">C#</span>
+                            <span class="tag">ASP.NET</span>
+                            <span class="tag">RESTful API</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Vue 3</span>
+                            <span class="tag">Angular</span>
+                            <span class="tag">React</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Database</h3>
+                        <div class="skill-tags">
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">SQL</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Security & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="tag">mTLS</span>
+                            <span class="tag">OpenSSL</span>
+                            <span class="tag">JWT</span>
+                            <span class="tag">RabbitMQ</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Other</h3>
+                        <div class="skill-tags">
+                            <span class="tag">OpenAI API</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">PowerShell</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 data-ro="Limbi străine" data-en="Languages">Limbi străine</h3>
+                        <div class="skill-tags">
+                            <span class="tag" data-ro="🇬🇧 Engleză B2" data-en="🇬🇧 English B2">🇬🇧 Engleză B2</span>
+                            <span class="tag" data-ro="🚗 Permis Cat. B" data-en="🚗 Driving License Cat. B">🚗 Permis Cat. B</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-btn" onclick="window.print()" data-ro="📄 Descarcă PDF" data-en="📄 Download PDF">📄 Descarcă PDF</button>
+
+    <script>
+        const translations = {
+            ro: {},
+            en: {}
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-ro]').forEach(el => {
+                if (lang === 'ro') {
+                    el.textContent = el.getAttribute('data-ro');
+                } else {
+                    el.textContent = el.getAttribute('data-en');
+                }
+            });
+
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
