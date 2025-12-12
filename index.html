@@ -191,12 +191,12 @@
         }
 
         .date {
-            color: #64748b;
+            color: #475569;
             font-size: 0.8em;
             background: #f1f5f9;
             padding: 4px 10px;
             border-radius: 4px;
-            font-weight: 500;
+            font-weight: 600;
             display: inline-block;
             margin-top: 6px;
         }
@@ -218,9 +218,10 @@
         }
 
         .job-description, .project-description {
-            color: #475569;
+            color: #1e293b;
             font-size: 0.9em;
             line-height: 1.5;
+            font-weight: 500;
         }
 
         .key-points {
@@ -237,6 +238,8 @@
             position: relative;
             font-size: 0.88em;
             line-height: 1.5;
+            color: #1e293b;
+            font-weight: 500;
         }
 
         .key-points p:last-child {
@@ -330,15 +333,161 @@
 
         /* CRITICAL: Print styles to maintain design */
         @media print {
+            @page {
+                size: A4;
+                margin: 12mm;
+            }
+
             body {
                 background: white !important;
                 padding: 0 !important;
+                font-size: 13px !important;
             }
             
             .container {
                 box-shadow: none !important;
                 max-width: 100% !important;
                 border-radius: 0 !important;
+            }
+
+            .content {
+                padding: 20px 25px !important;
+            }
+
+            .header {
+                padding: 25px 25px 20px 25px !important;
+            }
+
+            .header h1 {
+                font-size: 2em !important;
+                margin-bottom: 5px !important;
+            }
+
+            .header .title {
+                font-size: 1.05em !important;
+                margin-bottom: 12px !important;
+            }
+
+            .contact-info {
+                gap: 10px !important;
+                margin-top: 12px !important;
+            }
+
+            .contact-item {
+                padding: 5px 10px !important;
+                font-size: 0.8em !important;
+            }
+
+            .section {
+                margin-bottom: 18px !important;
+                page-break-inside: avoid;
+            }
+
+            .section-title {
+                font-size: 1.2em !important;
+                margin-bottom: 10px !important;
+            }
+
+            .section-title::before {
+                height: 18px !important;
+            }
+
+            .job, .project, .education-item {
+                margin-bottom: 12px !important;
+                padding: 12px 14px !important;
+                page-break-inside: avoid;
+            }
+
+            .job-title, .project-title {
+                font-size: 1em !important;
+                margin-bottom: 3px !important;
+            }
+
+            .company {
+                font-size: 0.88em !important;
+                margin-top: 3px !important;
+            }
+
+            .date {
+                padding: 3px 8px !important;
+                font-size: 0.75em !important;
+                margin-top: 4px !important;
+            }
+
+            .about {
+                padding: 12px 16px !important;
+                margin-bottom: 18px !important;
+                font-size: 0.9em !important;
+                line-height: 1.5 !important;
+            }
+
+            .tech-stack {
+                margin: 6px 0 !important;
+                gap: 4px !important;
+            }
+
+            .tech-badge {
+                padding: 3px 8px !important;
+                font-size: 0.73em !important;
+            }
+
+            .job-description, .project-description {
+                font-size: 0.85em !important;
+            }
+
+            .key-points {
+                padding: 8px 10px !important;
+                margin-top: 6px !important;
+            }
+
+            .key-points p {
+                margin-bottom: 4px !important;
+                font-size: 0.82em !important;
+                line-height: 1.4 !important;
+                padding-left: 14px !important;
+            }
+
+            /* Keep 2 columns for experience and projects */
+            .two-column {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 18px !important;
+                page-break-inside: avoid;
+            }
+
+            /* Education and Skills in 2 rows below */
+            .education-skills-section {
+                display: block !important;
+                page-break-before: auto;
+            }
+
+            .skills-grid {
+                gap: 10px !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+
+            .skill-category {
+                padding: 10px 12px !important;
+            }
+
+            .skill-category h3 {
+                font-size: 0.92em !important;
+                margin-bottom: 6px !important;
+            }
+
+            .skill-tags {
+                gap: 5px !important;
+            }
+
+            .tag {
+                padding: 4px 8px !important;
+                font-size: 0.75em !important;
+            }
+
+            .education-highlight {
+                padding: 3px 8px !important;
+                font-size: 0.78em !important;
+                margin-top: 4px !important;
             }
             
             .print-btn, .lang-switch {
@@ -639,7 +788,7 @@
                         <div class="project">
                             <div class="project-header">
                                 <div class="project-title" data-ro="Ticketing AI System" data-en="AI Ticketing System">Ticketing AI System</div>
-                                <div class="date" data-ro="Licență 10/10" data-en="Thesis 10/10">Licență 10/10</div>
+                                <div class="date" data-ro="Licență: 10/10" data-en="Thesis: 10/10">Licență: 10/10</div>
                             </div>
                             <div class="tech-stack">
                                 <span class="tech-badge">Spring Boot</span>
@@ -696,13 +845,16 @@
                 
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>Backend</h3>
+                        <h3>Backend & Core</h3>
                         <div class="skill-tags">
                             <span class="tag">Java</span>
                             <span class="tag">Spring Boot</span>
                             <span class="tag">C#</span>
                             <span class="tag">ASP.NET</span>
                             <span class="tag">REST API</span>
+                            <span class="tag">OOP</span>
+                            <span class="tag">Data Structures</span>
+                            <span class="tag">Design Patterns</span>
                         </div>
                     </div>
 
@@ -756,7 +908,7 @@
         </div>
     </div>
 
-    <button class="print-btn" onclick="window.print()" data-ro="📄 Descarcă PDF" data-en="📄 Download PDF">📄 Descarcă PDF</button>
+    <button class="print-btn" onclick="downloadPDF()" data-ro="📄 Descarcă PDF" data-en="📄 Download PDF">📄 Descarcă PDF</button>
 
     <script>
         function setLanguage(lang) {
@@ -772,6 +924,15 @@
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
+        }
+
+        function downloadPDF() {
+            const originalTitle = document.title;
+            document.title = 'CV_Dragan_Alexandru';
+            window.print();
+            setTimeout(() => {
+                document.title = originalTitle;
+            }, 1000);
         }
     </script>
 </body>
